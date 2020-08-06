@@ -1,0 +1,22 @@
+{
+  "name": "arduino-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rollout.js",
+  "scripts": {
+    "lint": "eslint *.js"
+  },
+  "author": "VMerk",
+  "license": "ISC",
+  "dependencies": {
+    "command-line-args": "^5.1.1",
+    "dotenv": "^8.2.0",
+    "node-ssh": "^11.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}

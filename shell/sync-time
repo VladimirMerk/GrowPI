@@ -1,0 +1,20 @@
+#!/bin/sh
+echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-0/new_device
+wget -q --spider --timeout=10 http://google.com
+if [ $? -eq 0 ]; then
+    echo "Setup clock online"
+    result=$(ntpdate 0.ru.pool.ntp.org)
+    if [[ $result == *"adjust time server"* ]]; then
+      hwclock -w -f /dev/rtc1 & sleep 1
+      hwclock -r -f /dev/rtc1 & sleep 1
+      date
+    else
+        echo $result
+        exit 1
+    fi
+else
+    echo "Setup clock offline"
+    hwclock -r -f /dev/rtc1 & sleep 1
+    hwclock -s -f /dev/rtc1 & sleep 1
+    date
+fi
